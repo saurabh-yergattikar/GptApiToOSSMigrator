@@ -1,4 +1,4 @@
-# 🚀 HarmonyMigrator
+# 🚀 GptApiToOSSMigrator
 
 A tool to help migrate OpenAI API calls to local models.
 
@@ -28,17 +28,17 @@ pip install -r requirements.txt
 
 Scan your codebase:
 ```bash
-python -m harmony_migrator scan /path/to/your/code
+gpt-migrator scan /path/to/your/code
 ```
 
 Get cost estimates:
 ```bash
-python -m harmony_migrator analyze /path/to/your/code
+gpt-migrator analyze /path/to/your/code
 ```
 
 Basic chat migration:
 ```bash
-python -m harmony_migrator migrate /path/to/your/code --type chat
+gpt-migrator migrate /path/to/your/code --type chat
 ```
 
 ## 📈 Example Output

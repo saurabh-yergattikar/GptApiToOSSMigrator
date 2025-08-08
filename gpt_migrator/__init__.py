@@ -1,4 +1,4 @@
-"""HarmonyMigrator - OpenAI to local model migration tool."""
+"""GptApiToOSSMigrator - OpenAI to local model migration tool."""
 
 __version__ = "0.1.0"
 __author__ = "Saurabh Yergattikar"

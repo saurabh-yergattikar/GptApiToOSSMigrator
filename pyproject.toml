@@ -1,5 +1,5 @@
 [project]
-name = "harmony-migrator"
+name = "gpt-api-to-oss-migrator"
 version = "0.1.0"
 description = "Tool to help migrate OpenAI API calls to local models"
 readme = "README.md"
@@ -18,7 +18,7 @@ dependencies = [
 ]
 
 [project.scripts]
-harmony-migrator = "harmony_migrator.cli:app"
+gpt-migrator = "gpt_migrator.cli:app"
 
 [build-system]
 requires = ["hatchling"]
@@ -27,7 +27,7 @@ build-backend = "hatchling.build"
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 python_files = ["test_*.py"]
-addopts = "--cov=harmony_migrator --cov-report=term-missing"
+addopts = "--cov=gpt_migrator --cov-report=term-missing"
 
 [tool.black]
 line-length = 88

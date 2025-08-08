@@ -36,7 +36,7 @@ def handle_ticket(text: str):
     }
 '''
     
-    print("🚀 Testing HarmonyMigrator Migration")
+    print("🚀 Testing GptApiToOSSMigrator Migration")
     print("=" * 50)
     
     # Test migration
