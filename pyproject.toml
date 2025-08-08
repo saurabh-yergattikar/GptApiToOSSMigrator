@@ -5,7 +5,7 @@ description = "Tool to help migrate OpenAI API calls to local models"
 readme = "README.md"
 license = {text = "MIT"}
 authors = [
-    {name = "Saurabh Yergattikar", email = "saurabh.ssy@gmail.com"}
+    {name = "Saurabh Yergattikar"}
 ]
 dependencies = [
     "typer>=0.9.0",

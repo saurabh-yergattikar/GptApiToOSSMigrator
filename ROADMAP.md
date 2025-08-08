@@ -1,4 +1,4 @@
-# 🗺️ HarmonyMigrator Roadmap
+# 🗺️ GptApiToOSSMigrator Roadmap
 
 ## Current Version (v0.1)
 - ✅ Basic OpenAI API call detection

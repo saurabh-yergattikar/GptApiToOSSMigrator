@@ -1,4 +1,4 @@
-# 📋 HarmonyMigrator Task List
+# 📋 GptApiToOSSMigrator Task List
 
 ## Current Implementation (v0.1)
 - ✅ Project structure
