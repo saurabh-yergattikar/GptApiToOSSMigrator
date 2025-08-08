@@ -8,6 +8,7 @@ from rich.console import Console
 from rich.table import Table
 
 from .analyzer.cost_analyzer import CostAnalyzer
+from .migrator.basic_migrator import BasicMigrator
 from .scanner.scanner import Scanner
 
 app = typer.Typer(help="Migrate OpenAI API calls to local models")
@@ -89,11 +90,60 @@ def migrate(
     dry_run: bool = typer.Option(True, help="Show changes without applying"),
 ):
     """Migrate OpenAI API calls to local models."""
-    console.print("🚧 Migration feature coming soon!")
-    console.print("Current support:")
-    console.print("✅ API call detection")
-    console.print("✅ Cost analysis")
-    console.print("⏳ Basic chat migration (in development)")
+    console.print(f"🔄 Migrating: {path}")
+    
+    # Read the file
+    try:
+        with open(path, 'r') as f:
+            code = f.read()
+    except FileNotFoundError:
+        console.print(f"❌ File not found: {path}")
+        return
+    
+    # Check if we can migrate this code
+    migrator = BasicMigrator()
+    if not migrator.can_migrate(code):
+        console.print("❌ This code cannot be migrated with current version")
+        console.print("Supported patterns:")
+        for pattern in migrator.supported_patterns:
+            console.print(f"  - {pattern}")
+        return
+    
+    # Perform migration
+    result = migrator.migrate_chat_completion(code)
+    
+    # Show results
+    console.print("\n📝 Migration Results:")
+    console.print("=" * 30)
+    
+    for change in result.changes_made:
+        console.print(f"✅ {change}")
+    
+    if result.warnings:
+        console.print("\n⚠️  Warnings:")
+        for warning in result.warnings:
+            console.print(f"  - {warning}")
+    
+    if dry_run:
+        console.print("\n📄 Migrated Code Preview:")
+        console.print("-" * 30)
+        console.print(result.migrated_code)
+        
+        console.print("\n🔧 Response Parser Code:")
+        console.print("-" * 30)
+        console.print(migrator.generate_response_parser(code))
+    else:
+        # Write migrated code
+        backup_path = f"{path}.backup"
+        with open(backup_path, 'w') as f:
+            f.write(result.original_code)
+        
+        with open(path, 'w') as f:
+            f.write(result.migrated_code)
+        
+        console.print(f"\n✅ Migration completed!")
+        console.print(f"📁 Backup saved to: {backup_path}")
+        console.print(f"📝 Original file updated: {path}")
 
 
 if __name__ == "__main__":
